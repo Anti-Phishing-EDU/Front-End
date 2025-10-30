@@ -11,7 +11,7 @@ const BackButton = () => {
         marginBottom: '16px',
         backgroundColor: 'transparent',
         border: 'none',
-        color: '#7e57c2',
+        color: '#2196f3',
         fontSize: '16px',
         cursor: 'pointer',
         padding: '0',

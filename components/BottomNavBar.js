@@ -28,7 +28,7 @@ const styles = {
   },
   navLabel: {
     fontSize: '12px',
-    
+    marginTop: '2px',
   },
 };
 

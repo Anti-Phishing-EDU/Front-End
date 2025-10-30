@@ -103,7 +103,7 @@ const styles = {
     height: '52px',
     borderRadius: '50%',
     border: 'none',
-    backgroundColor: '#f44336',
+    backgroundColor: '#2196f3',
     color: '#fff',
     fontSize: '20px',
     fontWeight: 'bold',

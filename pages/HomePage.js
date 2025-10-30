@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CasePage from './CasePage';
@@ -74,12 +75,16 @@ const HomePage = () => {
 // ✅ 스타일 정의
 const styles = {
   page: {
-    position: 'relative',
-    minHeight: '80vh',
-    backgroundColor: '#f9f9f9',
-    fontFamily: "'Segoe UI', sans-serif",
-    boxSizing: 'border-box',
-  },
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  width: '100vw',
+  height: '100vh',    
+  overflow: 'hidden', 
+  backgroundColor: '#f9f9f9',
+  fontFamily: "'Segoe UI', sans-serif",
+  boxSizing: 'border-box',
+},
 
   header: {
     position: 'relative',
@@ -87,7 +92,7 @@ const styles = {
     justifyContent: 'flex-end',
     alignItems: 'center',
     backgroundColor: '#f9f9f9',
-    padding: '16px 20px 24px 20px',
+    padding: '20px 20px 10px 20px',
   },
 
   profileButton: {
@@ -97,8 +102,8 @@ const styles = {
   },
 
   profileIcon: {
-    width: '32px',
-    height: '32px',
+    width: '20px',
+    height: '20x',
     borderRadius: '50%',
     objectFit: 'cover',
     boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
@@ -106,53 +111,42 @@ const styles = {
 
   wrapper: {
     padding: '0 20px 40px 20px',
-    maxWidth: '800px',
+    maxWidth: '500px',
     margin: '0 auto',
-  },
-
-  todaySection: {
-    marginTop: '10px',
-    marginBottom: '10px',
   },
 
   mainTitle: {
     fontSize: '22px',
     fontWeight: '500',
-    marginBottom: '10px',
+    marginBottom: '5px',
     lineHeight: '1.5',
     textAlign: 'center',
   },
 
-  highlight: {
-    color: '#f44336',
-    fontWeight: 'bold',
-  },
 
   // ✅ 스크롤바 완전 제거 + 부드러운 자동 이동
   noticeContainer: {
     overflowX: 'scroll',
     whiteSpace: 'nowrap',
-    marginBottom: '8px',
+    marginBottom: '0px',
     display: 'flex',
     gap: '10px',
-    paddingBottom: '4px',
+    paddingBottom: '0px',
     scrollbarWidth: 'none', // Firefox
     msOverflowStyle: 'none', // IE/Edge
   },
 
   noticeCard: {
     display: 'inline-block',
-    backgroundColor: '#ffcdd2',
-    border: '1px solid #f44336',
+    backgroundColor: '#addaffff',
+    border: '1px solid #2196f3',
     borderRadius: '10px',
-    padding: '10px 14px',
+    padding: '12px 16px',
     fontSize: '14px',
     flexShrink: 0,
   },
 
-  caseWrapper: {
-    marginTop: '10px',
-  },
+  
 };
 
 // ✅ Chrome / Safari 전용 스크롤바 숨김

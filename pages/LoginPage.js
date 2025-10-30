@@ -56,7 +56,7 @@ const styles = {
     height: '100vh',
     backgroundColor: '#f9f9f9',
     display: 'flex',
-   
+    justifyContent: 'center',
     alignItems: 'center',
     padding: '20px',
   },
@@ -72,7 +72,7 @@ const styles = {
   },
   title: {
     fontSize: '28px',
-    color: '#f44336',
+    color: '#2196f3',
     fontWeight: '700',
     marginBottom: '8px',
     textAlign: 'center',
@@ -98,7 +98,7 @@ const styles = {
     marginBottom: '28px',
   },
   loginButton: {
-    backgroundColor: '#f44336',
+    backgroundColor: '#2196f3',
     border: 'none',
     borderRadius: '50%',
     color: '#fff',
@@ -112,7 +112,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     fontSize: '13px',
-    color: '#f44336',
+    color: '#2196f3',
   },
   link: {
     cursor: 'pointer',

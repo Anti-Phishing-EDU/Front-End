@@ -137,7 +137,7 @@ const styles = {
   },
   progressBarFill: {
     height: '100%',
-    backgroundColor: '#ff5c5c',
+    backgroundColor: '#2196f3',
     transition: 'width 0.3s ease',
   },
   quizContainer: {
@@ -169,7 +169,7 @@ const styles = {
   nextButton: {
     marginTop: '16px',
     padding: '10px 22px',
-    backgroundColor: '#ff5c5c',
+    backgroundColor: '#2196f3',
     color: 'white',
     border: 'none',
     borderRadius: '8px',

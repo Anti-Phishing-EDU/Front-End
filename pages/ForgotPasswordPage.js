@@ -66,7 +66,7 @@ const styles = {
   },
   title: {
     fontSize: '24px',
-    color: '#f44336',
+    color: '#2196f3',
     fontWeight: '700',
     marginBottom: '8px',
     textAlign: 'center',
@@ -89,7 +89,7 @@ const styles = {
   },
   Button: {
     alignSelf: 'center',
-    backgroundColor: '#f44336',
+    backgroundColor: '#2196f3',
     border: 'none',
     borderRadius: '50%',
     color: '#fff',

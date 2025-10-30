@@ -18,7 +18,10 @@ const CasePage = () => {
       <div style={styles.caseList}>
         {caseList.map((item, idx) => (
           <div key={idx} style={styles.caseCard}>
-            <h4 style={styles.caseTitle}>⚠️ {item.title}</h4>
+            {/* ✅ 제목을 카드 상단에 올림 */}
+            <div style={styles.cardHeader}>
+              <h4 style={styles.caseTitle}>⚠️ {item.title}</h4>
+            </div>
             <p style={styles.caseDetail}>{item.detail}</p>
           </div>
         ))}
@@ -31,61 +34,72 @@ const styles = {
   container: {
     maxWidth: '900px',
     margin: '0 auto',
-    padding: '40px 24px 80px 24px',
-    backgroundColor: '#fafafa',
+    padding: '40px 24px 40px 24px',
+    backgroundColor: '#f9f9f9',
     boxSizing: 'border-box',
   },
 
   header: {
     textAlign: 'center',
-    marginBottom: '32px',
+    marginBottom: '0px',
   },
 
   headerTitle: {
+    marginTop: '0px',
     fontSize: '24px',
     fontWeight: '700',
-    color: '#f44336',
-    marginBottom: '8px',
+    color: '#000000ff',
   },
 
   headerSubtitle: {
-    fontSize: '14px',
+    fontSize: '12px',
     color: '#777',
   },
 
   caseList: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', 
-    gap: '16px',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+    gap: '12px',
   },
 
-  caseCard: {
-    backgroundColor: '#fff',
-    border: '1px solid #eee',
-    borderRadius: '14px',
-    padding: '20px 18px',
-    boxShadow: '0 3px 8px rgba(0,0,0,0.05)',
-    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-    cursor: 'pointer',
+caseCard: {
+  backgroundColor: '#fff',
+  border: '1px solid #ddd',
+  borderRadius: '8px',                  // ✅ 모서리 둥근 정도 더 줄임
+  padding: '8px 10px',                  // ✅ 내부 여백 축소
+  boxShadow: '0 1px 3px rgba(0,0,0,0.05)', // ✅ 그림자 최소화
+  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+  cursor: 'pointer',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'flex-start',
+  minHeight: '30px',                    // ✅ 카드 높이 전체적으로 축소
+},
+
+
+
+  /* ✅ 제목 위치를 카드 상단으로 당김 */
+  cardHeader: {
+    marginBottom: '6px',
   },
 
   caseTitle: {
-    margin: 0,
-    fontSize: '16px',
-    fontWeight: '600',
-    color: '#222',
+    margin: '0',
+    fontSize: '17px',
+    fontWeight: '700',
+    color: '#000000ff',
   },
 
   caseDetail: {
-    marginTop: '8px',
+    marginTop: '4px', // ✅ 간격 축소
     fontSize: '14px',
-    color: '#555',
-    lineHeight: '1.5',
+    color: '#333',
+    lineHeight: '1.4',
   },
 
   '@media (max-width: 768px)': {
     container: {
-      padding: '20px 16px 60px 16px',
+      padding: '20px 16px 40px 16px',
     },
     headerTitle: {
       fontSize: '20px',

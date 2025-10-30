@@ -24,13 +24,13 @@ const MyPage = () => {
 
         <div style={styles.card}>
           <h4 style={styles.cardTitle}>시뮬레이션 진행 상황</h4>
-          <ProgressBar percent={simulationProgress} color="#f44336" />
+          <ProgressBar percent={simulationProgress} color="#2196f3" />
           <p style={styles.progressText}>{Math.round(simulationProgress)}% 완료</p>
         </div>
 
         <div style={styles.card}>
           <h4 style={styles.cardTitle}>퀴즈 진행 상황</h4>
-          <ProgressBar percent={quizProgress} color="#f44336" />
+          <ProgressBar percent={quizProgress} color="#2196f3" />
           <p style={styles.progressText}>{quizProgress}% 완료</p>
         </div>
 

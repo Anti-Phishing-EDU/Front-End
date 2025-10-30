@@ -103,27 +103,23 @@ const SimulationPage = () => {
 const styles = {
   page: {
     backgroundColor: '#f9f9f9',
-    minHeight: '100vh',
-    padding: '24px 16px 60px 16px',
+    minHeight: '85vh',
+    padding: '24px 16px 50px 16px',
     fontFamily: "'Segoe UI', sans-serif",
     display: 'flex',
     justifyContent: 'center',
+   overflow: 'hidden',
   },
   wrapper: {
-    maxWidth: '700px',
+    maxWidth: '300px',
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
   },
-  header: {
-    display: 'flex',
-    alignItems: 'center',
-    marginBottom: '16px',
-  },
   title: {
     fontSize: '22px',
-    fontWeight: '700',
-    marginLeft: '8px',
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
   chatWrapper: {
     display: 'flex',
@@ -135,7 +131,7 @@ const styles = {
     borderRadius: '16px',
     padding: '16px',
     boxShadow: '0 4px 10px rgba(0,0,0,0.05)',
-    minHeight: '400px',
+    minHeight: '100px',
   },
   inputWrapper: {
     marginTop: '20px',
@@ -148,12 +144,12 @@ const styles = {
     border: '1px solid #ccc',
     fontSize: '14px',
     resize: 'none',
-    width: '100%',
+    width: '90%',
     minHeight: '80px',
   },
   button: {
     marginTop: '10px',
-    backgroundColor: '#ff5b5b',
+    backgroundColor: '#2196f3',
     color: 'white',
     padding: '12px',
     border: 'none',
@@ -165,7 +161,7 @@ const styles = {
   },
   botBubble: {
     alignSelf: 'flex-start',
-    backgroundColor: '#ffe4e4',
+    backgroundColor: '#addaffff',
     color: '#333',
     padding: '10px 14px',
     borderRadius: '14px',
@@ -174,7 +170,7 @@ const styles = {
   },
   userBubble: {
     alignSelf: 'flex-end',
-    backgroundColor: '#ff5c5c',
+    backgroundColor: '#2196f3',
     color: 'white',
     padding: '10px 14px',
     borderRadius: '14px',

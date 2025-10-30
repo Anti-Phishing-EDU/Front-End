@@ -107,6 +107,8 @@ const styles = {
     backgroundColor: '#f9f9f9',
     minHeight: '100vh',
     padding: '24px 16px 60px 16px',
+    height: '100vh',     
+    overflow: 'hidden', 
     fontFamily: "'Segoe UI', sans-serif",
   },
   wrapper: {
@@ -123,12 +125,12 @@ const styles = {
     backgroundColor: '#e0e0e0',
     borderRadius: '5px',
     overflow: 'hidden',
-    marginTop: '24px',
+    marginTop: '100px',
     marginBottom: '30px',
   },
   progressBarFill: {
     height: '100%',
-    backgroundColor: '#ff5c5c',
+    backgroundColor: '#2196f3',
     transition: 'width 0.3s ease',
   },
   question: {
@@ -154,7 +156,7 @@ const styles = {
   nextButton: {
     marginTop: '16px',
     padding: '10px 20px',
-    backgroundColor: '#FF4848',
+    backgroundColor: '#2196f3',
     color: 'white',
     border: 'none',
     borderRadius: '8px',

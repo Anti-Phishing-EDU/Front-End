@@ -68,8 +68,8 @@ const styles = {
   button: {
     width: '100%',
     padding: '16px',
-    backgroundColor: '#ffcdd2',
-    border: '1px solid #ef9a9a',
+    backgroundColor: '#addaffff',
+    border: '1px solid #2196f3',
     borderRadius: '12px',
     marginBottom: '16px',
     fontSize: '16px',
@@ -78,7 +78,7 @@ const styles = {
     boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
   },
   reportText: {
-    color: '#e53935',
+    color: '#2196f3',
     fontSize: '16px',
     textAlign: 'center',
     cursor: 'pointer',
