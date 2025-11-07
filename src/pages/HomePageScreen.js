@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/global.css";
 
 const phishingAlerts = [
@@ -22,7 +23,8 @@ const phishingCases = [
   },
 ];
 
-const HomePageScreen = ({ navigateTo }) => {
+const HomePageScreen = () => {
+  const navigate = useNavigate();
   const [currentAlert, setCurrentAlert] = useState(0);
 
   useEffect(() => {
@@ -34,29 +36,29 @@ const HomePageScreen = ({ navigateTo }) => {
 
   return (
     <div style={outerContainer}>
-      {/* ✅ Header */}
+      {/* Header */}
       <div style={header}>
         <h2 style={logoText}>PHISHIELD</h2>
         <img
           src="/user.png"
           alt="User"
           style={profileIcon}
-          onClick={() => navigateTo("mypage")}
+          onClick={() => navigate("/mypage")}
         />
       </div>
 
-      {/* ✅ Alert Banner */}
+      {/* Alert Banner */}
       <div style={alertBanner}>
         <p style={alertText}>{phishingAlerts[currentAlert]}</p>
       </div>
 
-      {/* ✅ Section Title */}
+      {/* Section Title */}
       <div style={sectionTitle}>
         <h3 style={mainTitle}>최신 피싱 사례</h3>
         <p style={subtitle}>최근 발견된 주요 피싱 사례를 확인하세요.</p>
       </div>
 
-      {/* ✅ Case List */}
+      {/* Case List */}
       <div style={caseList}>
         {phishingCases.map((item, index) => (
           <div key={index} style={caseCard}>
@@ -66,25 +68,25 @@ const HomePageScreen = ({ navigateTo }) => {
         ))}
       </div>
 
-      {/* ✅ Bottom Nav */}
+      {/* Bottom Nav */}
       <div style={bottomNav}>
         <img
           src="/quiz.png"
           alt="Quiz"
           style={navIcon}
-          onClick={() => navigateTo("quiz")}
+          onClick={() => navigate("/quiz")}
         />
         <img
           src="/home.png"
           alt="Home"
           style={{ ...navIcon, ...navIconActive }}
-          onClick={() => navigateTo("home")}
+          onClick={() => navigate("/home")}
         />
         <img
           src="/simulation.png"
           alt="Simulation"
           style={navIcon}
-          onClick={() => navigateTo("simulation")}
+          onClick={() => navigate("/simulation")}
         />
       </div>
     </div>
@@ -92,6 +94,7 @@ const HomePageScreen = ({ navigateTo }) => {
 };
 
 export default HomePageScreen;
+
 
 const outerContainer = {
   display: "flex",
@@ -117,7 +120,7 @@ const header = {
 const logoText = {
   color: "#0483E7",
   fontWeight: 800,
-  fontSize: "clamp(1.4rem, 3vw, 1.8rem)",
+  fontSize: "clamp(1.8rem, 3vw, 1.8rem)",
 };
 
 const profileIcon = {
@@ -128,8 +131,8 @@ const profileIcon = {
 
 const alertBanner = {
   width: "100%",
-  background: "linear-gradient(90deg, #7CC9FF, #A8D8FF)", // ✅ 부드러운 블루톤
-  borderRadius: "0px",
+  background: "linear-gradient(90deg, #7CC9FF)", 
+  borderRadius: "15px",
   padding: "1.2rem 1rem",
   marginBottom: "2rem",
   marginTop: "1.5rem",
@@ -139,14 +142,14 @@ const alertBanner = {
 
 const alertText = {
   color: "#fff",
-  fontWeight: 600,
-  fontSize: "clamp(0.9rem, 2vw, 1rem)",
+  fontWeight: 500,
+  fontSize: "clamp(1rem, 2vw, 1rem)",
   margin: 0,
 };
 
 const sectionTitle = {
   textAlign: "center",
-  marginBottom: "1.5rem",
+  marginBottom: "2rem",
 };
 
 const mainTitle = {
@@ -176,7 +179,7 @@ const caseCard = {
   padding: "1.2rem 1rem",
   display: "flex",
   flexDirection: "column",
-  gap: "0.4rem",
+  gap: "3rem",
   transition: "transform 0.2s ease",
   cursor: "default",
 };
@@ -184,7 +187,7 @@ const caseCard = {
 const caseTitle = {
   color: "#000",
   fontWeight: 700,
-  fontSize: "clamp(1rem, 2.5vw, 1.1rem)",
+  fontSize: "clamp(1rem, 2.5vw, 1rem)",
   margin: 0,
 };
 

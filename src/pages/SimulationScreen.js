@@ -1,9 +1,14 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/global.css";
 
-const SimulationScreen = ({ navigateTo }) => {
+const SimulationScreen = () => {
+  const navigate = useNavigate();
   const [messages, setMessages] = useState([
-    { sender: "ai", text: "안녕하세요. [국세청]입니다. 환급금이 있습니다. 계좌번호를 입력해주세요." },
+    {
+      sender: "ai",
+      text: "안녕하세요. [국세청]입니다. 환급금이 있습니다. 계좌번호를 입력해주세요.",
+    },
   ]);
   const [userInput, setUserInput] = useState("");
 
@@ -70,19 +75,19 @@ const SimulationScreen = ({ navigateTo }) => {
           src="/quiz.png"
           alt="Quiz"
           style={navIcon}
-          onClick={() => navigateTo("quiz")}
+          onClick={() => navigate("/quiz")}
         />
         <img
           src="/home.png"
           alt="Home"
           style={navIcon}
-          onClick={() => navigateTo("home")}
+          onClick={() => navigate("/home")}
         />
         <img
           src="/simulation.png"
           alt="Simulation"
           style={{ ...navIcon, ...navIconActive }}
-          onClick={() => navigateTo("simulation")}
+          onClick={() => navigate("/simulation")}
         />
       </div>
     </div>

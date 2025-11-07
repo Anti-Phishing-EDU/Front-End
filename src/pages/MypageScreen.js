@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/global.css";
 
-const MyPageScreen = ({ navigateTo }) => {
+const MyPageScreen = () => {
+  const navigate = useNavigate();
   const [userName, setUserName] = useState("사용자");
 
   useEffect(() => {
@@ -9,70 +11,76 @@ const MyPageScreen = ({ navigateTo }) => {
     if (storedName) setUserName(storedName);
   }, []);
 
+  const handleLogout = () => {
+    alert("로그아웃 되었습니다.");
+    localStorage.removeItem("isLoggedIn");
+    navigate("/login");
+  };
+
   return (
     <div style={outerContainer}>
-      {/* ✅ Header */}
+      {/* Header */}
       <div style={header}>
         <h2 style={pageTitle}>마이페이지</h2>
       </div>
 
-      {/* ✅ 프로필 영역 */}
+      {/* 프로필 영역 */}
       <div style={profileSection}>
         <img src="/user.png" alt="User Profile" style={profileCircle} />
         <p style={userNameText}>{userName} 님</p>
       </div>
 
-      {/* ✅ 진행 상태 */}
+      {/* 진행 상태 */}
       <div style={progressContainer}>
+        {/* 🔹 시뮬레이션 */}
         <div style={progressCard}>
-          <p style={progressTitle}>시뮬레이션 진행 상황</p>
-          <div style={progressBar}>
-            <div style={{ ...progressFill, width: "60%" }}></div>
+          <div style={progressTextBox}>
+            <p style={progressTitle}>시뮬레이션 진행 상황</p>
+            <p style={progressPercent}>60%</p>
           </div>
-          <p style={progressPercent}>60%</p>
+          <div style={progressBar}>
+            <div style={{ ...progressFill, width: "60%" }} />
+          </div>
         </div>
 
+        {/* 🔹 퀴즈 */}
         <div style={progressCard}>
-          <p style={progressTitle}>퀴즈 진행 상황</p>
-          <div style={progressBar}>
-            <div style={{ ...progressFill, width: "40%" }}></div>
+          <div style={progressTextBox}>
+            <p style={progressTitle}>퀴즈 진행 상황</p>
+            <p style={progressPercent}>40%</p>
           </div>
-          <p style={progressPercent}>40%</p>
+          <div style={progressBar}>
+            <div style={{ ...progressFill, width: "40%" }} />
+          </div>
         </div>
       </div>
 
-      {/* ✅ 로그아웃 버튼 */}
+      {/* 로그아웃 버튼 */}
       <div style={settingsContainer}>
-        <button
-          style={logoutTextButton}
-          onClick={() => {
-            alert("로그아웃 되었습니다.");
-            navigateTo("login");
-          }}
-        >
+        <button style={logoutTextButton} onClick={handleLogout}>
           로그아웃
         </button>
       </div>
 
-      {/* ✅ Bottom Navigation */}
+      {/* Bottom Navigation */}
       <div style={bottomNav}>
         <img
           src="/quiz.png"
           alt="Quiz"
           style={navIcon}
-          onClick={() => navigateTo("quiz")}
+          onClick={() => navigate("/quiz")}
         />
         <img
           src="/home.png"
           alt="Home"
           style={navIcon}
-          onClick={() => navigateTo("home")}
+          onClick={() => navigate("/home")}
         />
         <img
           src="/simulation.png"
           alt="Simulation"
           style={navIcon}
-          onClick={() => navigateTo("simulation")}
+          onClick={() => navigate("/simulation")}
         />
       </div>
     </div>
@@ -130,36 +138,51 @@ const userNameText = {
   fontWeight: 600,
   color: "#000",
   marginTop: "0.5rem",
-  transform: "translateY(10%)"
+  transform: "translateY(10%)",
 };
 
 const progressContainer = {
   width: "100%",
-  maxWidth: "3500px",
+  maxWidth: "420px",
   display: "flex",
   flexDirection: "column",
   gap: "1rem",
   marginBottom: "2rem",
-  transform: "translateY(10%)"
+  transform: "translateY(10%)",
 };
 
 const progressCard = {
   backgroundColor: "#fff",
   borderRadius: "10px",
   boxShadow: "0 4px 10px rgba(0, 0, 0, 0.08)",
-  padding: "clamp(1rem, 2vw, 1.2rem)",
+  padding: "1.2rem 1.5rem",
   display: "flex",
   flexDirection: "column",
+  alignItems: "flex-start",
+  gap: "2.5rem",
+};
+
+const progressTextBox = {
+  display: "flex",
+  justifyContent: "space-between",
   alignItems: "center",
-  gap: "0.1rem",
+  width: "100%",
 };
 
 const progressTitle = {
   fontWeight: 600,
-  fontSize: "clamp(0.9rem, 2vw, 1rem)",
-  margin: "0.2rem",
-  justifyContent: "space-between",
+  fontSize: "clamp(1rem, 2.5vw, 1.5rem)",
+  color: "#000",
+  textAlign: "left",
 };
+
+const progressPercent = {
+  fontSize: "clamp(1rem, 2.5vw, 1.2rem)",
+  color: "#0483E7",
+  fontWeight: 600,
+  textAlign: "right",
+};
+
 
 const progressBar = {
   width: "100%",
@@ -167,26 +190,22 @@ const progressBar = {
   backgroundColor: "#dcdcdc",
   borderRadius: "6px",
   overflow: "hidden",
+  display: "flex",
 };
 
 const progressFill = {
   height: "100%",
   backgroundColor: "#6EBEFF",
   borderRadius: "4px",
-  transition: "width 0.2s ease",
+  transition: "width 1s ease",
 };
 
-const progressPercent = {
-  fontSize: "clamp(1rem, 2vw, 1.1rem)",
-  color: "#000",
-  fontWeight: 500,
-};
 
 const settingsContainer = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  gap: "1rem",
+  gap: "5rem",
 };
 
 const logoutTextButton = {
@@ -196,7 +215,7 @@ const logoutTextButton = {
   fontSize: "clamp(0.8rem, 2vw, 1rem)",
   fontWeight: 500,
   cursor: "pointer",
-  padding: "0.3rem 2rem",
+  padding: "2rem 2rem",
   transition: "color 1s ease",
 };
 

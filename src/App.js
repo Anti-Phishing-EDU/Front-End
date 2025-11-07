@@ -1,77 +1,54 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./styles/global.css";
-import SplashScreen from "./screens/SplashScreen";
-import LoginScreen from "./screens/LoginScreen";
-import SignupScreen from "./screens/SignupScreen";
-import FindPasswordScreen from "./screens/FindPasswordScreen";
-import HomePageScreen from "./screens/HomePageScreen";
-import QuizSelectScreen from "./screens/QuizSelectScreen";
-import QuizChoiceScreen from "./screens/QuizChoiceScreen";
-import QuizOXScreen from "./screens/QuizOXScreen";
-import SimulationScreen from "./screens/SimulationScreen";
-import MyPageScreen from "./screens/MypageScreen";
-function App() {
-  const [currentScreen, setCurrentScreen] = useState("splash");
 
-  
+import SplashScreen from "./pages/SplashScreen";
+import LoginScreen from "./pages/LoginScreen";
+import SignupScreen from "./pages/SignupScreen";
+import FindPasswordScreen from "./pages/FindPasswordScreen";
+import HomePageScreen from "./pages/HomePageScreen";
+import QuizSelectScreen from "./pages/QuizSelectScreen";
+import QuizChoiceScreen from "./pages/QuizChoiceScreen";
+import QuizOXScreen from "./pages/QuizOXScreen";
+import SimulationScreen from "./pages/SimulationScreen";
+import MyPageScreen from "./pages/MypageScreen";
+
+function SplashRedirect() {
+  const navigate = useNavigate();
+
   useEffect(() => {
-    if (currentScreen === "splash") {
-      const timer = setTimeout(() => setCurrentScreen("signup"), 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [currentScreen]);
+    const timer = setTimeout(() => navigate("/login"), 2000);
+    return () => clearTimeout(timer);
+  }, [navigate]);
 
-  switch (currentScreen) {
-    case "splash":
-      return <SplashScreen />;
+  return <SplashScreen />;
+}
 
-    case "login":
-      return (
-        <LoginScreen
-          goFindPassword={() => setCurrentScreen("findPassword")}
-          onLoginSuccess={() => setCurrentScreen("home")}
-        />
-      );
+function App() {
+  return (
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<SplashRedirect />} />
+          <Route path="/splash" element={<SplashScreen />} />
+          <Route path="/login" element={<LoginScreen />} />
+          <Route path="/signup" element={<SignupScreen />} />
+          <Route path="/find-password" element={<FindPasswordScreen />} />
+          <Route path="/home" element={<HomePageScreen />} />
+          <Route path="/quiz" element={<QuizSelectScreen />} />
+          <Route path="/quiz_choice" element={<QuizChoiceScreen />} />
+          <Route path="/quiz_ox" element={<QuizOXScreen />} />
+          <Route path="/simulation" element={<SimulationScreen />} />
+          <Route path="/mypage" element={<MyPageScreen />} />
+        </Routes>
+      </Router>
 
-    case "signup":
-      return <SignupScreen goLogin={() => setCurrentScreen("login")} />;
-
-    case "findPassword":
-      return <FindPasswordScreen goLogin={() => setCurrentScreen("login")} />;
-
-    case "home":
-      return (
-        <HomePageScreen navigateTo={(target) => setCurrentScreen(target)} />
-      );
-
-    case "quiz":
-      return (
-        <QuizSelectScreen navigateTo={(target) => setCurrentScreen(target)} />
-      );
-
-    case "quiz_choice":
-      return (
-        <QuizChoiceScreen navigateTo={(target) => setCurrentScreen(target)} />
-      );
-
-    case "quiz_ox":
-      return (
-        <QuizOXScreen navigateTo={(target) => setCurrentScreen(target)} />
-      );
-
-    case "simulation":
-      return (
-        <SimulationScreen navigateTo={(target) => setCurrentScreen(target)} />
-      );
-
-    case "mypage": 
-      return <MyPageScreen navigateTo={(target) => setCurrentScreen(target)} />;
-  
-
-    default:
- 
-      return <SplashScreen />;
-  }
+      {}
+      <ToastContainer position="bottom-center" autoClose={2000} hideProgressBar />
+    </>
+  );
 }
 
 export default App;

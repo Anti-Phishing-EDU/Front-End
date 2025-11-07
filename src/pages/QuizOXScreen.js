@@ -1,14 +1,14 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/global.css";
+import BackButton from "../components/BackButton";
 
 const quizData = [
-  {
-    question: "피싱 문자는 실제 기관이름을 사칭할 수 있다?",
-    answer: "O", // 정답
-  },
+  { question: "피싱 문자는 실제 기관이름을 사칭할 수 있다?", answer: "O" },
 ];
 
-const QuizOXScreen = ({ navigateTo }) => {
+const QuizOXScreen = () => {
+  const navigate = useNavigate();
   const [selected, setSelected] = useState(null);
   const [showFeedback, setShowFeedback] = useState(false);
   const [progress, setProgress] = useState(60);
@@ -21,23 +21,20 @@ const QuizOXScreen = ({ navigateTo }) => {
   const currentQuiz = quizData[0];
 
   return (
-    <div style={outerContainer}>
-      {/* Header */}
-      <div style={header}>
-        <h2 style={logoText}>OX 퀴즈</h2>
-      </div>
+  <div style={outerContainer}>
+    <BackButton to="/quiz" />
+    <div style={header}>
+      <h2 style={logoText}>OX 퀴즈</h2>
+    </div>
 
-      {/* Progress Bar */}
       <div style={progressBar}>
         <div style={{ ...progressFill, width: `${progress}%` }} />
       </div>
 
-      {/* Question */}
       <div style={questionBox}>
         <p style={questionText}>Q. {currentQuiz.question}</p>
       </div>
 
-      {/* OX Buttons */}
       <div style={oxContainer}>
         <button
           onClick={() => handleAnswer("O")}
@@ -78,7 +75,6 @@ const QuizOXScreen = ({ navigateTo }) => {
         </button>
       </div>
 
-      {/* 🔹 정답 / 오답 표시 */}
       {showFeedback && (
         <p
           style={{
@@ -88,31 +84,28 @@ const QuizOXScreen = ({ navigateTo }) => {
             fontSize: "clamp(0.9rem, 2vw, 1rem)",
           }}
         >
-          {selected === currentQuiz.answer
-            ? "정답입니다 "
-            : "틀렸습니다 "}
+          {selected === currentQuiz.answer ? "정답입니다!" : "틀렸습니다!"}
         </p>
       )}
 
-      {/* Bottom Nav */}
       <div style={bottomNav}>
         <img
           src="/quiz.png"
           alt="Quiz"
           style={{ ...navIcon, ...navIconActive }}
-          onClick={() => navigateTo("quiz")}
+          onClick={() => navigate("/quiz")}
         />
         <img
           src="/home.png"
           alt="Home"
           style={navIcon}
-          onClick={() => navigateTo("home")}
+          onClick={() => navigate("/home")}
         />
         <img
           src="/simulation.png"
           alt="Simulation"
           style={navIcon}
-          onClick={() => navigateTo("simulation")}
+          onClick={() => navigate("/simulation")}
         />
       </div>
     </div>

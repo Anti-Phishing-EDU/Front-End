@@ -1,19 +1,23 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/global.css";
+import { auth } from "../firebase";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { toast } from "react-toastify";
 
-const LoginScreen = ({ goSignup, goFindPassword, onLoginSuccess }) => {
-  const [form, setForm] = useState({ email: "", password: "" });
+const FindPasswordScreen = () => {
+  const navigate = useNavigate();
+  const [form, setForm] = useState({ name: "", email: "" });
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!form.email || !form.password) {
-      setError("모든 항목을 입력해주세요.");
+    if (!form.email) {
+      setError("이메일을 입력해주세요.");
       return;
     }
 
@@ -24,61 +28,80 @@ const LoginScreen = ({ goSignup, goFindPassword, onLoginSuccess }) => {
     }
 
     setError("");
-    alert("로그인 성공!");
-    onLoginSuccess();
+    setLoading(true);
+
+    try {
+      await sendPasswordResetEmail(auth, form.email);
+      toast.success("비밀번호 재설정 메일이 발송되었습니다!");
+      navigate("/login");
+    } catch (err) {
+      console.error("비밀번호 재설정 실패:", err);
+
+      if (err.code === "auth/user-not-found") {
+        toast.error("등록되지 않은 이메일입니다.");
+      } else if (err.code === "auth/invalid-email") {
+        toast.error("유효하지 않은 이메일 형식입니다.");
+      } else {
+        toast.error("이메일 전송 중 오류가 발생했습니다.");
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div style={outerContainer}>
       <div style={cardContainer}>
-        <h1 style={title}>Welcome</h1>
-        <p style={subtitle}>피싱 예방 교육 플랫폼에 오신 것을 환영합니다.</p>
-        
+        {}
+        <button style={backButton} onClick={() => navigate(-1)}>
+          ←
+        </button>
+
+        <h1 style={title}>비밀번호 찾기</h1>
+        <p style={subtitle}>등록된 이메일로 비밀번호 재설정 메일을 보냅니다.</p>
+
+        {}
         <form onSubmit={handleSubmit} style={formStyle}>
           <input
             name="email"
             placeholder="이메일"
             value={form.email}
             onChange={handleChange}
-            style={inputStyle}
-          />
-          <input
-            name="password"
-            type="password"
-            placeholder="비밀번호"
-            value={form.password}
-            onChange={handleChange}
+            required
             style={inputStyle}
           />
 
           {error && <p style={errorStyle}>{error}</p>}
 
-          <button type="submit" style={buttonStyle}>
-            로그인
-          </button>
+          {}
+          {loading ? (
+            <p style={{ color: "#0483E7", marginTop: "1rem" }}>📨 이메일 전송 중...</p>
+          ) : (
+            <button type="submit" style={buttonStyle}>
+              비밀번호 재설정
+            </button>
+          )}
         </form>
-
-        <div style={linkBox}>
-          <span style={{ ...linkText, color: "#0483e7" }}
-          onClick={() => goFindPassword()}>
-          비밀번호 찾기</span>
-        </div>
       </div>
     </div>
   );
 };
+
+export default FindPasswordScreen;
+
 
 const outerContainer = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   minHeight: "100vh",
-  backgroundColor: "#EAF5FF",
-  padding: "0 10vw", 
+  backgroundColor: "#F5F5F5",
+  padding: "0 10vw",
   boxSizing: "border-box",
 };
 
 const cardContainer = {
+  position: "relative",
   width: "100%",
   maxWidth: "420px",
   background: "#fff",
@@ -92,12 +115,22 @@ const cardContainer = {
   gap: "2vh",
 };
 
+const backButton = {
+  position: "absolute",
+  top: "18px",
+  left: "20px",
+  background: "none",
+  border: "none",
+  fontSize: "20px",
+  color: "#6EBEFF",
+  cursor: "pointer",
+};
+
 const title = {
   color: "#6EBEFF",
   fontSize: "clamp(1.8rem, 3vw, 2rem)",
   fontWeight: 700,
-  fontStyle: "italic",
-  marginBottom: "0rem",
+  marginBottom: "0.3rem",
 };
 
 const subtitle = {
@@ -136,26 +169,9 @@ const buttonStyle = {
   transition: "background 0.3s",
 };
 
-const linkBox = {
-  display: "flex",
-  justifyContent: "center",
-  width: "100%",
-  marginTop: "1.2rem",
-  padding: "0 10px",
-};
-
-const linkText = {
-  fontSize: "0.9rem",
-  color: "#0483e7",
-  cursor: "pointer",
-  userSelect: "none",
-};
-
 const errorStyle = {
   color: "red",
   fontSize: "0.85rem",
   textAlign: "center",
   marginTop: "0.3rem",
 };
-
-export default LoginScreen;

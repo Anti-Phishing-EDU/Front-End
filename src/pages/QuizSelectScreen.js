@@ -1,34 +1,37 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/global.css";
 
 const quizList = [
   {
     title: "객관식 퀴즈",
     description: "여러 선택지 중 정답을 골라보세요.",
-    target: "quiz_choice",
+    target: "/quiz_choice",
   },
   {
     title: "OX 퀴즈",
     description: "O 또는 X로 판단해보세요.",
-    target: "quiz_ox",
+    target: "/quiz_ox",
   },
 ];
 
-const QuizSelectScreen = ({ navigateTo }) => {
+const QuizSelectScreen = () => {
+  const navigate = useNavigate();
+
   return (
     <div style={outerContainer}>
-      {/* ✅ 중앙 타이틀 */}
+      {/* 중앙 타이틀 */}
       <div style={sectionTitle}>
         <h3 style={mainTitle}>퀴즈 유형 선택</h3>
       </div>
 
-      {/* ✅ Quiz List (전체 카드 클릭 가능) */}
+      {/* Quiz List */}
       <div style={quizListContainer}>
         {quizList.map((quiz, index) => (
           <div
             key={index}
             style={quizCard}
-            onClick={() => navigateTo(quiz.target)} // ✅ 카드 클릭시 이동
+            onClick={() => navigate(quiz.target)} // ✅ 라우터로 이동
           >
             <h4 style={quizTitle}>{quiz.title}</h4>
             <p style={quizDescription}>{quiz.description}</p>
@@ -36,25 +39,25 @@ const QuizSelectScreen = ({ navigateTo }) => {
         ))}
       </div>
 
-      {/* ✅ Bottom Nav */}
+      {/* Bottom Nav */}
       <div style={bottomNav}>
         <img
           src="/quiz.png"
           alt="Quiz"
           style={{ ...navIcon, ...navIconActive }}
-          onClick={() => navigateTo("quiz")}
+          onClick={() => navigate("/quiz")}
         />
         <img
           src="/home.png"
           alt="Home"
           style={navIcon}
-          onClick={() => navigateTo("home")}
+          onClick={() => navigate("/home")}
         />
         <img
           src="/simulation.png"
           alt="Simulation"
           style={navIcon}
-          onClick={() => navigateTo("simulation")}
+          onClick={() => navigate("/simulation")}
         />
       </div>
     </div>
@@ -63,7 +66,7 @@ const QuizSelectScreen = ({ navigateTo }) => {
 
 export default QuizSelectScreen;
 
-
+// ✅ 스타일 그대로 유지
 const outerContainer = {
   display: "flex",
   flexDirection: "column",
@@ -105,28 +108,28 @@ const quizCard = {
   display: "flex",
   flexDirection: "column",
   alignItems: "flex-start",
-  gap: "2rem",
-  cursor: "pointer", // ✅ 클릭 가능 표시
+  gap: "4rem",
+  cursor: "pointer",
   transition: "transform 0.15s ease, box-shadow 0.15s ease",
-};
-
-const quizTitle = {
-  color: "#000",
-  fontWeight: 700,
-  fontSize: "clamp(1rem, 2.5vw, 1.1rem)",
-  margin: 0,
-};
-
-const quizDescription = {
-  fontSize: "clamp(0.8rem, 2vw, 0.95rem)",
-  color: "#444",
-  margin: 0,
-  lineHeight: 1.4,
 };
 
 quizCard[":hover"] = {
   transform: "scale(1.02)",
   boxShadow: "0 6px 14px rgba(0, 0, 0, 0.12)",
+};
+
+const quizTitle = {
+  color: "#000",
+  fontWeight: 700,
+  fontSize: "clamp(1.3rem, 2.5vw, 1.3rem)",
+  margin: 0,
+};
+
+const quizDescription = {
+  fontSize: "clamp(1rem, 2vw, 1rem)",
+  color: "#444",
+  margin: 0,
+  lineHeight: 1.4,
 };
 
 const bottomNav = {
