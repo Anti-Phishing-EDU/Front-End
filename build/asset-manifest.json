@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.js": "/static/js/main.1c634c16.js",
+    "static/media/logo.png": "/static/media/logo.bc78b7e1e3e206537c25.png",
+    "static/media/simulation.png": "/static/media/simulation.e8c6a04f76d1677e62ae.png",
+    "static/media/user.png": "/static/media/user.44ea40a3eb8dd7fed2a9.png",
+    "static/media/quiz.png": "/static/media/quiz.e620fff2c800e4229010.png",
+    "index.html": "/index.html",
+    "main.1c634c16.js.map": "/static/js/main.1c634c16.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.1c634c16.js"
+  ]
+}

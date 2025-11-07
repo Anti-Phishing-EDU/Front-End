@@ -1,0 +1,26 @@
+/* ✅ 기본 앱 전체 스타일 초기화 */
+.App {
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* ✅ React 로고 관련 부분 삭제 (필요 없으면 완전히 제거 가능) */
+.App-logo {
+  display: none;
+}
+
+/* ✅ 링크 스타일統一 */
+.App-link {
+  color: #2196f3;
+  text-decoration: none;
+}
+
+.App-link:hover {
+  text-decoration: underline;
+}
