@@ -105,9 +105,9 @@ const OXQuizPage = () => {
 const styles = {
   page: {
     backgroundColor: '#f9f9f9',
-    minHeight: '100vh',
-    padding: '24px 16px 60px 16px',
-    height: '100vh',     
+    minHeight: '100dvh',
+    padding: '24px 16px 72px 16px',
+    height: '100dvh',     
     overflow: 'hidden', 
     fontFamily: "'Segoe UI', sans-serif",
   },

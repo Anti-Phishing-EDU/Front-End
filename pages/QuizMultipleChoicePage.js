@@ -111,8 +111,8 @@ const QuizMultipleChoicePage = () => {
 const styles = {
   page: {
     backgroundColor: '#f9f9f9',
-    minHeight: '100vh',
-    padding: '24px 16px 60px 16px',
+    minHeight: '100dvh',
+    padding: '24px 16px 72px 16px',
     fontFamily: "'Segoe UI', sans-serif",
   },
   wrapper: {

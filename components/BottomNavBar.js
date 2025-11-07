@@ -1,34 +1,47 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import quizIcon from '../assets/quiz.png';
+import homeIcon from '../assets/home.png';
+import simulationIcon from '../assets/simulation.png';
 
 const styles = {
   bottomNav: {
     position: 'fixed',
     bottom: 0,
-    left: '50%',
-    transform: 'translateX(-50%)',
+    left: 0,
     width: '100%',
-    maxWidth: '700px',
-    height: '60px',
-    backgroundColor: '#f0f0f0',
-    borderTop: '1px solid #ccc',
+    backgroundColor: '#fff',
+    borderTop: '1px solid #ddd',
     display: 'flex',
     justifyContent: 'space-around',
-    alignItems: 'center',
+    padding: '8px 0',
+    boxShadow: '0 -2px 6px rgba(0,0,0,0.05)',
     zIndex: 1000,
   },
   navButton: {
     background: 'none',
     border: 'none',
-    fontSize: '20px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     cursor: 'pointer',
+    color: '#333',
+  },
+  navIcon: {
+    width: '26px',
+    height: '26px',
+    marginBottom: '4px',
+    objectFit: 'contain',
+    filter: 'grayscale(100%)',
   },
   navLabel: {
     fontSize: '12px',
-    marginTop: '2px',
+  },
+  active: {
+    color: '#D32F2F',
+  },
+  activeIcon: {
+    filter: 'none',
   },
 };
 
@@ -36,31 +49,62 @@ const BottomNavBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const getColor = (path) =>
-    location.pathname === path ? '#D32F2F' : '#999999'; // 선택된 탭만 빨간색
-  
+  const isActive = (path) => location.pathname === path;
+
   return (
     <div style={styles.bottomNav}>
       <button
-        onClick={() => navigate('/community')}
-        style={{ ...styles.navButton, color: getColor('/community') }}
+        onClick={() => navigate('/quiz/ox')}
+        style={{
+          ...styles.navButton,
+          ...(isActive('/quiz/ox') ? styles.active : {}),
+        }}
       >
-        🗣
-        <div style={styles.navLabel}>커뮤니티</div>
+        <img
+          src={quizIcon}
+          alt="quiz"
+          style={{
+            ...styles.navIcon,
+            ...(isActive('/quiz/ox') ? styles.activeIcon : {}),
+          }}
+        />
+        <div style={styles.navLabel}>퀴즈</div>
       </button>
+
       <button
         onClick={() => navigate('/home')}
-        style={{ ...styles.navButton, color: getColor('/home') }}
+        style={{
+          ...styles.navButton,
+          ...(isActive('/home') ? styles.active : {}),
+        }}
       >
-        🏠
+        <img
+          src={homeIcon}
+          alt="home"
+          style={{
+            ...styles.navIcon,
+            ...(isActive('/home') ? styles.activeIcon : {}),
+          }}
+        />
         <div style={styles.navLabel}>홈</div>
       </button>
+
       <button
-        onClick={() => navigate('/mypage')}
-        style={{ ...styles.navButton, color: getColor('/mypage') }}
+        onClick={() => navigate('/simulation')}
+        style={{
+          ...styles.navButton,
+          ...(isActive('/simulation') ? styles.active : {}),
+        }}
       >
-        👤
-        <div style={styles.navLabel}>마이페이지</div>
+        <img
+          src={simulationIcon}
+          alt="simulation"
+          style={{
+            ...styles.navIcon,
+            ...(isActive('/simulation') ? styles.activeIcon : {}),
+          }}
+        />
+        <div style={styles.navLabel}>시뮬레이션</div>
       </button>
     </div>
   );

@@ -78,9 +78,9 @@ const styles = {
   position: 'fixed',
   top: 0,
   left: 0,
-  width: '100vw',
-  height: '100vh',    
-  overflow: 'hidden', 
+  width: '100%',
+  height: '100dvh',
+  overflow: 'hidden',
   backgroundColor: '#f9f9f9',
   fontFamily: "'Segoe UI', sans-serif",
   boxSizing: 'border-box',
@@ -103,14 +103,14 @@ const styles = {
 
   profileIcon: {
     width: '20px',
-    height: '20x',
+    height: '20px',
     borderRadius: '50%',
     objectFit: 'cover',
     boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
   },
 
   wrapper: {
-    padding: '0 20px 40px 20px',
+    padding: '0 20px 72px 20px',
     maxWidth: '500px',
     margin: '0 auto',
   },
