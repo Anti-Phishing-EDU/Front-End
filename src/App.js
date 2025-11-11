@@ -45,8 +45,33 @@ function App() {
         </Routes>
       </Router>
 
-      {}
-      <ToastContainer position="bottom-center" autoClose={2000} hideProgressBar />
+      {/* ✅ 중앙 토스트 + 닫기 버튼 제거 + 텍스트 중앙정렬 */}
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar
+        closeButton={false}
+        closeOnClick
+        draggable
+        pauseOnHover={false}
+        newestOnTop
+        style={{
+          position: "fixed",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          margin: 0,
+          padding: 0,
+          pointerEvents: "none",
+        }}
+        toastStyle={{
+          pointerEvents: "auto",
+          margin: 0,
+          textAlign: "center", // ✅ 텍스트 중앙정렬
+          fontSize: "1rem",
+          fontWeight: "600",
+        }}
+      />
     </>
   );
 }

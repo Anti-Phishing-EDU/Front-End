@@ -1,9 +1,14 @@
+<<<<<<< HEAD
 import React from "react";
+=======
+import React, { useState } from "react";
+>>>>>>> 0422feb6 (feat: Update)
 import { useNavigate } from "react-router-dom";
 import "../styles/global.css";
 
 const SimulationScreen = () => {
   const navigate = useNavigate();
+<<<<<<< HEAD
 
   return (
     <div style={outerContainer}>
@@ -18,6 +23,72 @@ const SimulationScreen = () => {
         }}
         title="Phishing Simulation"
       />
+=======
+  const [messages, setMessages] = useState([
+    {
+      sender: "ai",
+      text: "안녕하세요. [국세청]입니다. 환급금이 있습니다. 계좌번호를 입력해주세요.",
+    },
+  ]);
+  const [userInput, setUserInput] = useState("");
+
+  const handleSend = () => {
+    if (!userInput.trim()) return;
+
+    const newMessages = [...messages, { sender: "user", text: userInput }];
+
+    let aiResponse = "";
+    if (userInput.includes("계좌") || userInput.includes("번호")) {
+      aiResponse = "개인정보를 요구하는 메시지는 피싱일 가능성이 높습니다! 🚨";
+    } else if (userInput.includes("확인") || userInput.includes("링크")) {
+      aiResponse = "링크 클릭은 위험합니다. 해당 기관 공식 홈페이지를 직접 방문하세요.";
+    } else {
+      aiResponse = "의심되는 내용입니다. 출처를 다시 확인하세요.";
+    }
+
+    setMessages([...newMessages, { sender: "ai", text: aiResponse }]);
+    setUserInput("");
+  };
+
+  return (
+    <div style={outerContainer}>
+      {/* Header */}
+      <div style={header}>
+        <h2 style={logoText}>시뮬레이션</h2>
+      </div>
+
+      {/* 메시지 영역 */}
+      <div style={chatContainer}>
+        {messages.map((msg, index) => (
+          <div
+            key={index}
+            style={{
+              ...messageBubble,
+              alignSelf: msg.sender === "user" ? "flex-end" : "flex-start",
+              backgroundColor: msg.sender === "user" ? "#0483E7" : "#fff",
+              color: msg.sender === "user" ? "#fff" : "#000",
+              border: msg.sender === "ai" ? "1px solid #ccc" : "none",
+            }}
+          >
+            {msg.text}
+          </div>
+        ))}
+      </div>
+
+      {/* 입력창 */}
+      <div style={inputArea}>
+        <input
+          type="text"
+          placeholder="답변을 입력하세요"
+          value={userInput}
+          onChange={(e) => setUserInput(e.target.value)}
+          style={inputBox}
+        />
+        <button style={sendButton} onClick={handleSend}>
+          답변하기
+        </button>
+      </div>
+>>>>>>> 0422feb6 (feat: Update)
 
       {/* 하단 네비게이션 */}
       <div style={bottomNav}>
